@@ -1,0 +1,518 @@
+column name,label,mapping
+second_road_number,unclassified,0
+second_road_number,No Second Road,-1
+first_road_number,unclassified,0
+first_road_number,missing,-1
+accident_severity,Serious,1
+accident_severity,Slight,2
+accident_severity,Fatal,0
+police_force,Metropolitan Police,29
+police_force,City of London,5
+police_force,Cumbria,7
+police_force,Lancashire,24
+police_force,Merseyside,28
+police_force,Greater Manchester,18
+police_force,Cheshire,4
+police_force,Northumbria,35
+police_force,Durham,12
+police_force,North Yorkshire,32
+police_force,West Yorkshire,49
+police_force,South Yorkshire,38
+police_force,Humberside,22
+police_force,Cleveland,6
+police_force,West Midlands,48
+police_force,Staffordshire,39
+police_force,West Mercia,47
+police_force,Warwickshire,46
+police_force,Derbyshire,8
+police_force,Nottinghamshire,36
+police_force,Lincolnshire,26
+police_force,Leicestershire,25
+police_force,Northamptonshire,33
+police_force,Cambridgeshire,2
+police_force,Norfolk,30
+police_force,Suffolk,41
+police_force,Bedfordshire,1
+police_force,Hertfordshire,21
+police_force,Essex,14
+police_force,Thames Valley,45
+police_force,Hampshire,20
+police_force,Surrey,42
+police_force,Kent,23
+police_force,Sussex,43
+police_force,Devon and Cornwall,9
+police_force,Avon and Somerset,0
+police_force,Gloucestershire,16
+police_force,Wiltshire,50
+police_force,Dorset,10
+police_force,North Wales,31
+police_force,Gwent,19
+police_force,South Wales,37
+police_force,Dyfed-Powys,13
+police_force,Northern,34
+police_force,Grampian,17
+police_force,Tayside,44
+police_force,Fife,15
+police_force,Lothian and Borders,27
+police_force,Central,3
+police_force,Strathclyde,40
+police_force,Dumfries and Galloway,11
+local_authority_district,Hertsmere,247
+local_authority_district,Westminster,443
+local_authority_district,Kensington and Chelsea,258
+local_authority_district,Hammersmith and Fulham,236
+local_authority_district,Brent,146
+local_authority_district,City of London,178
+local_authority_district,Tower Hamlets,414
+local_authority_district,Camden,159
+local_authority_district,Haringey,238
+local_authority_district,Barnet,124
+local_authority_district,Islington,256
+local_authority_district,Ealing,200
+local_authority_district,Hounslow,252
+local_authority_district,Hackney,233
+local_authority_district,Newham,297
+local_authority_district,Hillingdon,249
+local_authority_district,London Airport (Heathrow),275
+local_authority_district,Epping Forest,216
+local_authority_district,Redbridge,328
+local_authority_district,Waltham Forest,423
+local_authority_district,Barking and Dagenham,123
+local_authority_district,Havering,246
+local_authority_district,Lambeth,266
+local_authority_district,Southwark,379
+local_authority_district,Wandsworth,424
+local_authority_district,Croydon,188
+local_authority_district,Bromley,151
+local_authority_district,Merton,285
+local_authority_district,Lewisham,271
+local_authority_district,Greenwich,231
+local_authority_district,Bexley,132
+local_authority_district,Harrow,241
+local_authority_district,Enfield,215
+local_authority_district,Broxbourne,153
+local_authority_district,Richmond upon Thames,334
+local_authority_district,Spelthorne,380
+local_authority_district,Kingston upon Thames,263
+local_authority_district,Elmbridge,214
+local_authority_district,Epsom and Ewell,217
+local_authority_district,Sutton,395
+local_authority_district,Welwyn Hatfield,434
+local_authority_district,Reigate and Banstead,331
+local_authority_district,Copeland,181
+local_authority_district,Allerdale,115
+local_authority_district,Carlisle,163
+local_authority_district,Eden,212
+local_authority_district,South Lakeland,368
+local_authority_district,Barrow-in-Furness,126
+local_authority_district,Blackpool,136
+local_authority_district,Wyre,456
+local_authority_district,Fylde,224
+local_authority_district,Preston,325
+local_authority_district,Lancaster,267
+local_authority_district,Chorley,176
+local_authority_district,West Lancashire,438
+local_authority_district,South Ribble,372
+local_authority_district,Ribble Valley,333
+local_authority_district,Rossendale,338
+local_authority_district,Blackburn with Darwen,135
+local_authority_district,Hyndburn,254
+local_authority_district,Burnley,155
+local_authority_district,Pendle,319
+local_authority_district,Liverpool,274
+local_authority_district,Sefton,353
+local_authority_district,Knowsley,265
+local_authority_district,Wirral,448
+local_authority_district,St. Helens,383
+local_authority_district,Manchester,281
+local_authority_district,Salford,347
+local_authority_district,Tameside,398
+local_authority_district,Stockport,387
+local_authority_district,Bolton,139
+local_authority_district,Wigan,445
+local_authority_district,Trafford,415
+local_authority_district,Bury,156
+local_authority_district,Rochdale,336
+local_authority_district,Oldham,316
+local_authority_district,Chester,171
+local_authority_district,Ellesmere Port and Neston,213
+local_authority_district,Vale Royal,419
+local_authority_district,Congleton,180
+local_authority_district,Halton,234
+local_authority_district,Warrington,426
+local_authority_district,Macclesfield,277
+local_authority_district,Crewe and Nantwich,187
+local_authority_district,Castle Morpeth,165
+local_authority_district,Tynedale,417
+local_authority_district,Alnwick,116
+local_authority_district,Berwick-upon-Tweed,131
+local_authority_district,Wansbeck,425
+local_authority_district,Newcastle upon Tyne,295
+local_authority_district,North Tyneside,307
+local_authority_district,Blyth Valley,137
+local_authority_district,Gateshead,225
+local_authority_district,South Tyneside,376
+local_authority_district,Sunderland,393
+local_authority_district,Wear Valley,432
+local_authority_district,Sedgefield,351
+local_authority_district,Darlington,190
+local_authority_district,Durham,199
+local_authority_district,Easington,201
+local_authority_district,Chester-le-Street,172
+local_authority_district,Derwentside,195
+local_authority_district,Teesdale,402
+local_authority_district,Craven,185
+local_authority_district,Hambleton,235
+local_authority_district,Harrogate,240
+local_authority_district,Selby,354
+local_authority_district,Richmondshire,335
+local_authority_district,Scarborough,350
+local_authority_district,York,458
+local_authority_district,Ryedale,346
+local_authority_district,Leeds,268
+local_authority_district,Wakefield,421
+local_authority_district,Kirklees,264
+local_authority_district,Calderdale,157
+local_authority_district,Bradford,143
+local_authority_district,Doncaster,196
+local_authority_district,Rotherham,340
+local_authority_district,Sheffield,356
+local_authority_district,Barnsley,125
+local_authority_district,230,7
+local_authority_district,225,3
+local_authority_district,221,1
+local_authority_district,224,2
+local_authority_district,226,4
+local_authority_district,"Kingston upon Hull, City of",262
+local_authority_district,227,5
+local_authority_district,220,0
+local_authority_district,229,6
+local_authority_district,Hartlepool,243
+local_authority_district,Stockton-on-Tees,388
+local_authority_district,Middlesbrough,290
+local_authority_district,Redcar and Cleveland,329
+local_authority_district,Birmingham,133
+local_authority_district,Wolverhampton,451
+local_authority_district,Walsall,422
+local_authority_district,Dudley,198
+local_authority_district,Sandwell,349
+local_authority_district,Solihull,360
+local_authority_district,Coventry,184
+local_authority_district,Cannock Chase,160
+local_authority_district,South Staffordshire,375
+local_authority_district,Lichfield,272
+local_authority_district,Stafford,384
+local_authority_district,Newcastle-under-Lyme,296
+local_authority_district,Stoke-on-Trent,389
+local_authority_district,Staffordshire Moorlands,385
+local_authority_district,East Staffordshire,209
+local_authority_district,Tamworth,399
+local_authority_district,Wyre Forest,457
+local_authority_district,Wychavon,454
+local_authority_district,Malvern Hills,280
+local_authority_district,272,9
+local_authority_district,Bromsgrove,152
+local_authority_district,Redditch,330
+local_authority_district,Worcester,452
+local_authority_district,275,10
+local_authority_district,271,8
+local_authority_district,South Shropshire,373
+local_authority_district,Shrewsbury and Atcham,358
+local_authority_district,North Shropshire,305
+local_authority_district,Oswestry,317
+local_authority_district,Telford and Wrekin,404
+local_authority_district,Bridgnorth,148
+local_authority_district,North Warwickshire,308
+local_authority_district,Nuneaton and Bedworth,314
+local_authority_district,Rugby ,341
+local_authority_district,Warwick,427
+local_authority_district,Stratford-upon-Avon,390
+local_authority_district,Erewash,218
+local_authority_district,Amber Valley,117
+local_authority_district,Bolsover,138
+local_authority_district,Derby,193
+local_authority_district,South Derbyshire,364
+local_authority_district,Derbyshire Dales,194
+local_authority_district,High Peak,248
+local_authority_district,North East Derbyshire,301
+local_authority_district,Chesterfield,173
+local_authority_district,Bassetlaw,129
+local_authority_district,Newark and Sherwood,294
+local_authority_district,Mansfield,282
+local_authority_district,Gedling,226
+local_authority_district,Ashfield,119
+local_authority_district,Nottingham,313
+local_authority_district,Broxtowe,154
+local_authority_district,Rushcliffe,343
+local_authority_district,East Lindsey,207
+local_authority_district,South Holland,366
+local_authority_district,Boston,140
+local_authority_district,South Kesteven,367
+local_authority_district,North Kesteven,303
+local_authority_district,Lincoln,273
+local_authority_district,West Lindsey,439
+local_authority_district,Blaby,134
+local_authority_district,Harborough,237
+local_authority_district,Leicester,269
+local_authority_district,North West Leicestershire,309
+local_authority_district,Oadby and Wigston,315
+local_authority_district,Hinckley and Bosworth,250
+local_authority_district,Melton,283
+local_authority_district,Rutland,345
+local_authority_district,Charnwood,167
+local_authority_district,Corby,182
+local_authority_district,East Northamptonshire,208
+local_authority_district,Kettering,260
+local_authority_district,Wellingborough,433
+local_authority_district,South Northamptonshire,370
+local_authority_district,Daventry,192
+local_authority_district,Northampton,311
+local_authority_district,Huntingdonshire,253
+local_authority_district,Peterborough,321
+local_authority_district,Fenland,221
+local_authority_district,East Cambridgeshire,202
+local_authority_district,South Cambridgeshire,363
+local_authority_district,Cambridge,158
+local_authority_district,Broadland,150
+local_authority_district,Norwich,312
+local_authority_district,South Norfolk,369
+local_authority_district,Breckland,145
+local_authority_district,North Norfolk,304
+local_authority_district,Great Yarmouth,230
+local_authority_district,King's Lynn and West Norfolk,261
+local_authority_district,Ipswich,255
+local_authority_district,Mid Suffolk,288
+local_authority_district,Babergh,122
+local_authority_district,Suffolk Coastal,392
+local_authority_district,Waveney,429
+local_authority_district,Forest Heath,222
+local_authority_district,St. Edmundsbury,382
+local_authority_district,Bedford,130
+local_authority_district,Luton,276
+local_authority_district,Mid Bedfordshire,286
+local_authority_district,South Bedfordshire,361
+local_authority_district,East Hertfordshire,206
+local_authority_district,North Hertfordshire,302
+local_authority_district,St. Albans,381
+local_authority_district,Three Rivers,409
+local_authority_district,Dacorum,189
+local_authority_district,Watford,428
+local_authority_district,Stevenage,386
+local_authority_district,Basildon,127
+local_authority_district,Chelmsford,168
+local_authority_district,Castle Point,166
+local_authority_district,Maldon,279
+local_authority_district,Uttlesford,418
+local_authority_district,Braintree,144
+local_authority_district,Colchester,179
+local_authority_district,Rochford,337
+local_authority_district,Tendring,405
+local_authority_district,Thurrock,410
+local_authority_district,Brentwood,147
+local_authority_district,Harlow,239
+local_authority_district,Southend-on-Sea,378
+local_authority_district,Aylesbury Vale,121
+local_authority_district,Wycombe,455
+local_authority_district,Chiltern,175
+local_authority_district,South Bucks,362
+local_authority_district,Cherwell,170
+local_authority_district,Slough,359
+local_authority_district,Oxford,318
+local_authority_district,Vale of White Horse,420
+local_authority_district,Windsor and Maidenhead,447
+local_authority_district,South Oxfordshire,371
+local_authority_district,West Oxfordshire,440
+local_authority_district,Bracknell Forest,142
+local_authority_district,Wokingham,450
+local_authority_district,West Berkshire,435
+local_authority_district,Reading,327
+local_authority_district,Milton Keynes,291
+local_authority_district,Rushmoor,344
+local_authority_district,Hart,242
+local_authority_district,Basingstoke and Deane,128
+local_authority_district,Portsmouth,324
+local_authority_district,Havant,245
+local_authority_district,East Hampshire,205
+local_authority_district,Winchester,446
+local_authority_district,New Forest,293
+local_authority_district,Gosport,228
+local_authority_district,Fareham,220
+local_authority_district,Eastleigh,211
+local_authority_district,Test Valley,406
+local_authority_district,Southampton ,377
+local_authority_district,503,11
+local_authority_district,504,12
+local_authority_district,Tandridge,400
+local_authority_district,Mole Valley,292
+local_authority_district,Guildford,232
+local_authority_district,Runnymede,342
+local_authority_district,Woking,449
+local_authority_district,Surrey Heath,394
+local_authority_district,Waverley,430
+local_authority_district,Maidstone,278
+local_authority_district,Ashford,120
+local_authority_district,Thanet,408
+local_authority_district,Tonbridge and Malling,411
+local_authority_district,Tunbridge Wells,416
+local_authority_district,Swale,396
+local_authority_district,Sevenoaks,355
+local_authority_district,537,14
+local_authority_district,Gravesham,229
+local_authority_district,534,13
+local_authority_district,Canterbury,161
+local_authority_district,Dartford,191
+local_authority_district,Dover,197
+local_authority_district,Shepway,357
+local_authority_district,550,15
+local_authority_district,553,16
+local_authority_district,Mid Sussex,289
+local_authority_district,Lewes,270
+local_authority_district,Crawley,186
+local_authority_district,Horsham,251
+local_authority_district,Wealden,431
+local_authority_district,Eastbourne,210
+local_authority_district,Rother,339
+local_authority_district,Hastings,244
+local_authority_district,Adur,114
+local_authority_district,Worthing,453
+local_authority_district,Arun,118
+local_authority_district,Chichester,174
+local_authority_district,Kerrier,259
+local_authority_district,Carrick,164
+local_authority_district,Penwith,320
+local_authority_district,Restormel,332
+local_authority_district,North Cornwall,298
+local_authority_district,Caradon,162
+local_authority_district,North Devon,299
+local_authority_district,Mid Devon,287
+local_authority_district,Torridge,413
+local_authority_district,West Devon,436
+local_authority_district,Exeter,219
+local_authority_district,Teignbridge,403
+local_authority_district,East Devon,203
+local_authority_district,Plymouth,322
+local_authority_district,South Hams,365
+local_authority_district,Torbay,412
+local_authority_district,"Bristol, City of",149
+local_authority_district,North Somerset,306
+local_authority_district,602,18
+local_authority_district,603,19
+local_authority_district,South Somerset,374
+local_authority_district,Mendip,284
+local_authority_district,Taunton Deane,401
+local_authority_district,Sedgemoor,352
+local_authority_district,West Somerset,441
+local_authority_district,604,20
+local_authority_district,600,17
+local_authority_district,Cheltenham,169
+local_authority_district,Tewkesbury,407
+local_authority_district,Cotswold,183
+local_authority_district,Stroud,391
+local_authority_district,Forest of Dean,223
+local_authority_district,Gloucester,227
+local_authority_district,Salisbury,348
+local_authority_district,Kennet,257
+local_authority_district,North Wiltshire,310
+local_authority_district,West Wiltshire,442
+local_authority_district,Swindon,397
+local_authority_district,Poole,323
+local_authority_district,Christchurch,177
+local_authority_district,East Dorset,204
+local_authority_district,West Dorset,437
+local_authority_district,Bournemouth,141
+local_authority_district,Purbeck,326
+local_authority_district,North Dorset,300
+local_authority_district,Weymouth and Portland,444
+local_authority_district,664,25
+local_authority_district,661,22
+local_authority_district,662,23
+local_authority_district,663,24
+local_authority_district,660,21
+local_authority_district,666,27
+local_authority_district,667,28
+local_authority_district,668,29
+local_authority_district,669,30
+local_authority_district,665,26
+local_authority_district,670,31
+local_authority_district,684,35
+local_authority_district,683,34
+local_authority_district,685,36
+local_authority_district,680,32
+local_authority_district,682,33
+local_authority_district,692,38
+local_authority_district,696,41
+local_authority_district,690,37
+local_authority_district,695,40
+local_authority_district,698,42
+local_authority_district,694,39
+local_authority_district,699,43
+local_authority_district,701,44
+local_authority_district,704,47
+local_authority_district,702,45
+local_authority_district,705,48
+local_authority_district,703,46
+local_authority_district,712,51
+local_authority_district,713,52
+local_authority_district,716,55
+local_authority_district,710,49
+local_authority_district,714,53
+local_authority_district,715,54
+local_authority_district,711,50
+local_authority_district,717,56
+local_authority_district,718,57
+local_authority_district,801,58
+local_authority_district,802,59
+local_authority_district,803,60
+local_authority_district,804,61
+local_authority_district,805,62
+local_authority_district,806,63
+local_authority_district,807,64
+local_authority_district,808,65
+local_authority_district,809,66
+local_authority_district,810,67
+local_authority_district,811,68
+local_authority_district,814,71
+local_authority_district,815,72
+local_authority_district,816,73
+local_authority_district,812,69
+local_authority_district,813,70
+local_authority_district,817,74
+local_authority_district,819,76
+local_authority_district,818,75
+local_authority_district,822,78
+local_authority_district,823,79
+local_authority_district,821,77
+local_authority_district,828,84
+local_authority_district,824,80
+local_authority_district,829,85
+local_authority_district,825,81
+local_authority_district,826,82
+local_authority_district,830,86
+local_authority_district,831,87
+local_authority_district,827,83
+local_authority_district,833,88
+local_authority_district,835,90
+local_authority_district,834,89
+local_authority_district,836,91
+local_authority_district,839,94
+local_authority_district,840,95
+local_authority_district,841,96
+local_authority_district,847,102
+local_authority_district,849,104
+local_authority_district,838,93
+local_authority_district,837,92
+local_authority_district,843,98
+local_authority_district,842,97
+local_authority_district,844,99
+local_authority_district,846,101
+local_authority_district,845,100
+local_authority_district,848,103
+local_authority_district,853,108
+local_authority_district,854,109
+local_authority_district,851,106
+local_authority_district,852,107
+local_authority_district,850,105
+local_authority_district,856,110
+local_authority_district,857,111
+local_authority_district,858,112
+local_authority_district,859,113
