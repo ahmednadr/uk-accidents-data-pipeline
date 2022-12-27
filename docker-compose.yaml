@@ -81,6 +81,20 @@ services:
       interval: 5s
       retries: 5
     restart: always
+  
+  accidentsDB:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: nader
+      POSTGRES_PASSWORD: nader
+      POSTGRES_DB: accidents
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "nader"]
+      interval: 5s
+      retries: 5
+    restart: always
 
   airflow-webserver:
     <<: *airflow-common

@@ -1,5 +1,4 @@
 def Clean_Encode(path):
-    # install_and_import('sklearn')
     import subprocess
     import sys
 
@@ -79,8 +78,8 @@ def Clean_Encode(path):
     ready_to_encode1 = week_added.copy()
     month_num = ready_to_encode1['date'].dt.month
 
-    season_dict =  dict.fromkeys([1, 2, 12], 'Winter') | dict.fromkeys([3, 4, 5], 'Spring') | dict.fromkeys([6, 7, 8], 'Summer') | dict.fromkeys([9, 10, 11], 'Fall')
-    ready_to_encode1['Season'] = month_num.apply(lambda x: season_dict[x])
+    # season_dict =  dict.fromkeys([1, 2, 12], 'Winter') | dict.fromkeys([3, 4, 5], 'Spring') | dict.fromkeys([6, 7, 8], 'Summer') | dict.fromkeys([9, 10, 11], 'Fall')
+    # ready_to_encode1['Season'] = month_num.apply(lambda x: season_dict[x])
 
     from datetime import time
     ready_to_encode = ready_to_encode1.copy()
@@ -123,7 +122,7 @@ def Clean_Encode(path):
     trial1['second_road_number'] = trial1['second_road_number'].str.replace("No Second Road", '-1.0')
     trial1['second_road_number'] = trial1['second_road_number'].astype('float').astype('int')
 
-    for x in ['first_road_class' , 'road_type' , 'junction_detail' , 'junction_control', 'second_road_class' , 'pedestrian_crossing_human_control' , 'pedestrian_crossing_physical_facilities' , 'light_conditions', 'weather_conditions' , 'road_surface_conditions', 'special_conditions_at_site', 'carriageway_hazards', 'Season', 'day_of_week']:
+    for x in ['first_road_class' , 'road_type' , 'junction_detail' , 'junction_control', 'second_road_class' , 'pedestrian_crossing_human_control' , 'pedestrian_crossing_physical_facilities' , 'light_conditions', 'weather_conditions' , 'road_surface_conditions', 'special_conditions_at_site', 'carriageway_hazards',  'day_of_week']:
         print(f'{x}: {trial1[x].value_counts().size} categories')
 
 
@@ -137,7 +136,7 @@ def Clean_Encode(path):
         return to_return
 
 
-    after_encoding = one_hot_encode(trial1, ['first_road_class' , 'road_type' , 'junction_detail' , 'junction_control', 'second_road_class' , 'pedestrian_crossing_human_control' , 'pedestrian_crossing_physical_facilities' , 'light_conditions', 'weather_conditions' , 'road_surface_conditions', 'special_conditions_at_site', 'carriageway_hazards', 'Season', 'day_of_week'])
+    after_encoding = one_hot_encode(trial1, ['first_road_class' , 'road_type' , 'junction_detail' , 'junction_control', 'second_road_class' , 'pedestrian_crossing_human_control' , 'pedestrian_crossing_physical_facilities' , 'light_conditions', 'weather_conditions' , 'road_surface_conditions', 'special_conditions_at_site', 'carriageway_hazards', 'day_of_week'])
 
     print(f'rows before encoding: {trial1.shape[1]}, rows after encoding: {after_encoding.shape[1]}')
 
@@ -174,6 +173,6 @@ def Clean_Encode(path):
             for value in values:
                 write.writerow([column ,  value[0], value[1]])
 
-    data_set.to_parquet('./files/ready.parquet')
+    data_set.to_parquet('/opt/airflow/dags/files/ready.parquet')
 
     # return "./files/ready.parquet"
