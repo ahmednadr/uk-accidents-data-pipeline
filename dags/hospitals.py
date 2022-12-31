@@ -555,7 +555,7 @@ def hospitals(path):
     username = "nader" 
     password = "nader" 
     ipaddress = "accidentsDB" 
-    port = 5439 # this is the standard port for Postgres, but change it to your port if needed
+    port = 5432 
     dbname = "accidents" 
 
 
