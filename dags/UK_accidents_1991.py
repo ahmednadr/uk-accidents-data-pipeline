@@ -4,6 +4,7 @@ from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 from task_clean_encode import Clean_Encode
 from hospitals import hospitals
+from save_to_accidents_db import save
 with DAG(
     dag_id= "accidents_1991",
     start_date=datetime(2022, 12, 24),
@@ -17,6 +18,8 @@ with DAG(
 
     path2 = '/opt/airflow/dags/files/ready.parquet'
     task2  = PythonOperator(task_id="hospitals_counts",python_callable=hospitals,op_kwargs={"path" :path2})
+
+    task3  = PythonOperator(task_id="save_to_db",python_callable=save)
 
     # Set dependencies between tasks
     hello >> task1 >> task2

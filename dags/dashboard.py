@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import dash
 from dash import html
 from dash import dcc
@@ -8,22 +7,12 @@ from dash_bootstrap_templates import load_figure_template
 import plotly.graph_objs as go
 import plotly.express as px
 from dash.dependencies import Input,Output
-from dash import callback_context
 
 
 load_figure_template('LITERA')
+app = dash.Dash(external_stylesheets=[dbc.themes.LITERA])
 
-
-###--------------Build the figures / dropdowns------------------------------------
-
-x = np.random.sample(100)
-y = np.random.sample(100)
-z = np.random.choice(a = ['a','b','c'], size = 100)
-
-
-df1 = pd.DataFrame({'x': x, 'y':y, 'z':z}, index = range(100))
-
-fig1 = px.scatter(df1, x= x, y = y, color = z)
+originaldf = pd.read_csv("dags/files/1991_Accidents_UK.csv")
 
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -33,26 +22,80 @@ SIDEBAR_STYLE = {
     "width": "24rem",
     "padding": "2rem 1rem",
     "background-color": "darkslategray",
-    # "background-color": "#2C3639",
     "color":"white"
 }
+
+cols = originaldf.columns
+num_cols = list(originaldf._get_numeric_data().columns)
+cat_cols = list(set(cols) - set(num_cols))
+
+
+@app.callback(
+    Output('x-axis', 'options'),
+    Output('y-axis', 'options'),
+    Input('plot', 'value'))
+def set_plot_options(selected_plot):
+    x = []
+    y = []
+    if selected_plot == "histogram":
+        x,y = cat_cols , num_cols
+    elif selected_plot == "scatter":
+        x = y = num_cols
+    elif selected_plot ==  "line":
+        x = cols
+        y = num_cols
+    return x,y
+
+
+@app.callback(
+    Output('x-axis', 'value'),
+    Input('x-axis', 'options'))
+def set_x_value(available_options):
+    return available_options[0]
+
+
+@app.callback(
+    Output('y-axis', 'value'),
+    Input('y-axis', 'options'))
+def set_y_value(available_options):
+    return available_options[0]
+
+@app.callback(
+    Output('display-selected-plot-str', 'children'),
+    Input('plot', 'value'),
+    Input('x-axis', 'value'),
+    Input('y-axis', 'value'))
+def set_display_children(selected_plot, selected_x, selected_y):
+    return u'{} plot of x-axis {} and y-axis {}'.format(
+        selected_plot, selected_x,selected_y
+    )
+
+@app.callback(
+    Output('display-selected-plot', 'figure'),
+    Input('plot', 'value'),
+    Input('x-axis', 'value'),
+    Input('y-axis', 'value'))
+def plot(plot,x_axis,y_axis):
+    if plot == "scatter":
+        return px.scatter(originaldf,x=x_axis,y=y_axis)
+    elif plot == "histogram":
+        return px.histogram(originaldf,x=x_axis,y=y_axis)
+    elif plot == "line":
+        return px.line(originaldf,x=x_axis,y=y_axis)
 
 
 sidebar = html.Div(
     [
         html.H2("Filters"),
         html.Hr(),
-        # html.P(
-        #     "A simple sidebar layout with filters", className="lead"
-        # ),
         dbc.Nav(
             [
-                dcc.Dropdown(id = 'one'),
+                dcc.Dropdown(["scatter","histogram","line"],id = 'plot',value="scatter",style={"color":"black"}),
                 html.Br(),
-                dcc.Dropdown(id = 'two'),
+                dcc.Dropdown(id = 'x-axis',style={"color":"black"}),
                 html.Br(),
-                dcc.Dropdown(id = 'three')
-
+                dcc.Dropdown(id = 'y-axis',style={"color":"black"}),
+                html.Div(id='display-selected-plot-str')
             ],
             vertical=True,
             pills=True,
@@ -62,24 +105,17 @@ sidebar = html.Div(
 )
 
 
-###---------------Create the layout of the app ------------------------
-
-app = dash.Dash(external_stylesheets=[dbc.themes.LITERA])
-
 app.layout = html.Div(children = [
                 dbc.Row([
                     dbc.Col(),
-
                     dbc.Col(html.H1('The 1991 accidents report'),width = 8, style = {'margin-left':'15px','margin-top':'25px'})
                     ]),
                 dbc.Row(
-                    [dbc.Col(sidebar),
-                    dbc.Col(dcc.Graph(id = 'graph1', figure = fig1), width = 8, style = {'margin-left':'15px', 'margin-top':'7px', 'margin-right':'15px'})
+                    [dbc.Col(sidebar), 
+                    dbc.Col(dcc.Graph(id="display-selected-plot"), width = 8, style = {'margin-left':'15px', 'margin-top':'7px', 'margin-right':'15px'})
                     ])
     ],
-    # style={"background-color": "#2C3639"}
 )
-
 
 
 if __name__ == '__main__':
