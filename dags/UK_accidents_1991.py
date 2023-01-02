@@ -2,9 +2,13 @@ from datetime import datetime
 from airflow import DAG 
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
-from task_clean_encode import Clean_Encode
+from clean import clean
 from hospitals import hospitals
+from encode import encode
 from save_to_accidents_db import save
+from dashboard import dashboard
+
+
 with DAG(
     dag_id= "accidents_1991",
     start_date=datetime(2022, 12, 24),
@@ -14,12 +18,26 @@ with DAG(
     hello = BashOperator(task_id="hello", bash_command="echo starting")
 
     path1 = "/opt/airflow/dags/files/1991_Accidents_UK.csv"
-    task1  = PythonOperator(task_id="Clean_and_encode",python_callable=Clean_Encode,op_kwargs={"path" :path1})
+    cleaning  = PythonOperator(task_id="clean",python_callable=clean,op_kwargs={"path" :path1})
 
-    path2 = '/opt/airflow/dags/files/ready.parquet'
-    task2  = PythonOperator(task_id="hospitals_counts",python_callable=hospitals,op_kwargs={"path" :path2})
+    path2 = '/opt/airflow/dags/files/clean.parquet'
+    get_hospitals  = PythonOperator(task_id="hospitals_around",python_callable=hospitals,op_kwargs={"path" :path2})
 
-    task3  = PythonOperator(task_id="save_to_db",python_callable=save)
+    path3 = '/opt/airflow/dags/files/hospitals.parquet'
+    encoding  = PythonOperator(task_id="encode",python_callable=encode,op_kwargs={"path" :path3})
+
+    path4 = '/opt/airflow/dags/files/encoded.parquet'
+    saving  = PythonOperator(task_id="save_to_db",python_callable=save,op_kwargs={"path" :path4})
+
+    path5 = '/opt/airflow/dags/files/hospitals.parquet'
+    ploting  = PythonOperator(task_id="dashboard",python_callable=dashboard,op_kwargs={"path" :path5})
 
     # Set dependencies between tasks
-    hello >> task1 >> task2
+    # hello -> cleaning -> hospitals -> ploting
+    #                               \-> encoding -> saving
+
+    hello >> cleaning >> get_hospitals 
+    get_hospitals.set_downstream(ploting)
+    get_hospitals.set_downstream(encoding)
+    encoding.set_downstream(saving)
+    

@@ -1,12 +1,9 @@
-    #!/usr/bin/env python
-    # coding: utf-8
+#!/usr/bin/env python
+# coding: utf-8
 
-    # #### Our idea for the new column is calculating the number of hospitals near the accident (in range 10km ) location to have some insights about the relation between number of casualties and medical facilities around.
-    # 
-    # #### So, we do web scraping to extract data about hospitals in UK.
-
-    # In[190]:
-
+# #### Our idea for the new column is calculating the number of hospitals near the accident (in range 10km ) location to have some insights about the relation between number of casualties and medical facilities around.
+# 
+# #### So, we do web scraping to extract data about hospitals in UK.
 
 def hospitals(path):
     import pandas as pd
@@ -15,9 +12,6 @@ def hospitals(path):
     # # loading the clean dataset
 
     # We load the data set in parquet format from the previous milestone
-
-    # In[191]:
-
 
     accidents = pd.read_parquet(path)
 
@@ -29,8 +23,6 @@ def hospitals(path):
 
     # Here, we realized it's not UTM northing and easting but something called british national grid system 
 
-    # In[194]:
-
 
     def BNG_to_LL(east,north):
         import requests
@@ -39,17 +31,6 @@ def hospitals(path):
         assert(res.status_code ==200)
         body = res.json()
         return str(body["LONGITUDE"])+","+str(body["LATITUDE"])
-
-
-    # In[195]:
-
-
-
-
-    # That was extremely slow so we used an online website source code that handles BNG to LL conversions in bulks converted from js to python website: https://gridreferencefinder.com/batchConvert/batchConvert.php
-
-    # In[ ]:
-
 
     import math
 
@@ -164,8 +145,6 @@ def hospitals(path):
         RadY_Rot = (Y_Rot / 3600) * (Pi / 180)
         return (-1 * X * RadY_Rot) + (Y * RadX_Rot) + Z + (Z * sfactor) + DZ
 
-
-
     def Iterate_XYZ_to_Lat (a, e2, PHI1, Z, RootXYSqr):
 
 
@@ -205,13 +184,8 @@ def hospitals(path):
         longitude = XYZ_to_Long(x2, y2)
         return (latitude, longitude)
 
-
     # it was run on a remote server and exported as csv
-
     # Here, we add longitude and latitude (They were all missing) to our data set as it will ease our calculations later on.
-
-    # In[197]:
-
 
     tmp = pd.read_csv("/opt/airflow/dags/files/coordinates conversion.csv")
     print(tmp.head())
@@ -219,11 +193,7 @@ def hospitals(path):
     accidents['latitude'] = tmp['lat'].values
     accidents.head()
 
-
     # Here comes the hospitals data collection part. The code is explained as comments below.
-
-    # In[198]:
-
 
     import re
     import requests
@@ -255,9 +225,6 @@ def hospitals(path):
     print(len(links_to_hospitals))
 
 
-    # In[199]:
-
-
     def get_hospital_details(link_to_hospital:str):
         # get the html of the hospital page
         page_res = requests.get(link_to_hospital)
@@ -279,10 +246,6 @@ def hospitals(path):
 
 
     # Here, we extract the info out of the HTML code.
-
-    # In[200]:
-
-
     # parse the coordinate of a hospital given the info_card of it's html page
     def get_coordinates(info_card):
         try:
@@ -313,10 +276,6 @@ def hospitals(path):
 
 
     # We creat a dataframe of all hospitals' details to ease our access to them
-
-    # In[201]:
-
-
     df = pd.DataFrame(columns=['lat','lng','year','beds'])
     for i in range(len(links_to_hospitals)):
         info = get_hospital_details(links_to_hospitals.pop())
@@ -325,82 +284,38 @@ def hospitals(path):
         beds = get_number_of_beds(info)
         df = df.append({'lat':lat ,'lng':lng,'year':year , 'beds':beds}, ignore_index=True)
 
-
-
     # Year column may have text envolved so, we extract the year as integer.
-
-    # In[202]:
-
-
     df['year'] = df['year'].str.extract('([0-9]+)')
     df.year.isna().value_counts()
-
-
-    # In[203]:
-
 
     # df = df.dropna(subset= ['year'])
     df.year.isna().value_counts()
 
 
-    # We decided not to remove hospitals whose year is missing because we verified the hospitals from NHS website (healthcare website in UK) and figured out that hospitals with missing year are older than 1991 but their year of construction was not recorded.
-
-    # In[204]:
-
-
+    # We decided not to remove hospitals whose year is missing 
+    # because we verified the hospitals from NHS website (healthcare website in UK) 
+    # and figured out that hospitals with missing year are older than 1991 
+    # but their year of construction was not recorded.
     df.year = df.year.fillna(0)    # in order to be able to compare years.
     df_years_ready = df.copy()
     #df_years_ready.head()
     df_years_ready.year.isna().value_counts()
 
-
-    # In[205]:
-
-
     df_years_ready.year = df_years_ready.year.astype('int')
     df_years_ready = df_years_ready[df_years_ready.year <= 1991]
     df_years_ready.year.dtype
 
-
-    # All recent hospitals (after 1991) are removed.
-
-    # In[206]:
-
-
-    df_years_ready.head()
-
-
-    # All hospitals with missing location are removed.
-
-    # In[207]:
-
-
     df_lng_lat_clean = df_years_ready.drop(df_years_ready.index[df_years_ready['lng'] == -200])
     len(df_lng_lat_clean)
 
-
-    # In[208]:
-
-
-    accidents.head()
-
-
     # These following functions parse longitude and latitude from (degrees, minutes, and secoonds) into (decimal) format.
     # The function takes longitude or latitude and returns the result
-    # 
-
-    # In[209]:
-
-
     import re
     def dms2dd(degrees, minutes, seconds, direction):
         dd = float(degrees) + float(minutes)/60 + float(seconds)/(60*60);
         if direction == 'S' or direction == 'W':
             dd *= -1
         return dd;
-
-
-
 
     def parse_dms2(dms) :
         parts = re.split("[^\d\.?\w]+", dms)
@@ -417,36 +332,16 @@ def hospitals(path):
     
         return value   
 
-
-
-    # In[210]:
-
-
     # this is for testing only
     string = "36°57'9.13' W"
     parse_dms2(string)
 
-
     # Creating 2 columns that will contain the new coordinates in decimal format and initializing them with 0.
-
-    # In[212]:
-
-
     df_lng_lat_clean['new_lng'] = 0
     df_lng_lat_clean['new_lat'] = 0
     df_lng_lat_clean.head()
 
-
-    # In[213]:
-
-
-
-
     # Placing Longitude and Latitude in the new created columns.
-
-    # In[214]:
-
-
     for i in range(0,len(df_lng_lat_clean)) :
         df_lng_lat_clean['new_lat'].iloc[i] = parse_dms2(df_lng_lat_clean['lat'].iloc[i] )
         df_lng_lat_clean['new_lng'].iloc[i] = parse_dms2(df_lng_lat_clean['lng'].iloc[i] )
@@ -454,9 +349,6 @@ def hospitals(path):
 
 
     # This following function calculates the distance between two locations expressed in longitude and latitude.
-
-    # In[215]:
-
 
     from math import radians, cos, sin, asin, sqrt
 
@@ -493,17 +385,13 @@ def hospitals(path):
     else:
         print('Outside the area')
 
-
-    # In[216]:
-
-
     array_of_hospital_counts = []      # this will contain each observation's number of hosppitals around
     count_of_hospitals = 0
 
     for i in range(0, len(accidents)) :
         count_of_hospitals = 0
         lat1 = accidents['latitude'][i]
-        lon1 = accidents['longitude'] [i]      #location of accident
+        lon1 = accidents['longitude'][i]      #location of accident
 
         for j in range(0, len(df_lng_lat_clean)) :
             lat2= df_lng_lat_clean['new_lat'].iloc[j] 
@@ -513,57 +401,8 @@ def hospitals(path):
                 count_of_hospitals +=1
         array_of_hospital_counts .append(count_of_hospitals)
 
-
-    # In[217]:
-
-
     accidents['hospitals_around'] = array_of_hospital_counts
-    accidents.head()
+    accidents.to_parquet("/opt/airflow/dags/files/hospitals.parquet")
 
 
-    # Now, we start normalizing data once again to be ready for ML model. 
-
-    # In[218]:
-
-
-    def MinMax_normalisation(col):
-        return (col-col.min())/(col.max()-col.min())
-    def normalise (df,cols):
-        for col in cols:
-            df[col] = MinMax_normalisation(df[col])         
-
-
-    # In[219]:
-
-
-    data_after_normalization = accidents.copy()
-    normalise (data_after_normalization , ['location_easting_osgr' , 'location_northing_osgr' , 'hospitals_around', 'longitude' , 'latitude'])
-    data_after_normalization.head()
-
-
-    # In[220]:
-
-
-    data_final_form = data_after_normalization.copy()
-    # del data_final_form['longitude']
-    # del data_final_form['latitude']
-
-    # data_final_form.to_sql
-    from sqlalchemy import create_engine
-
-    # Defining our connection variables
-    username = "nader" 
-    password = "nader" 
-    ipaddress = "accidentsDB" 
-    port = 5432 
-    dbname = "accidents" 
-
-
-    # A long string that contains the necessary Postgres login information
-    postgres_str = f'postgresql://{username}:{password}@{ipaddress}:{port}/{dbname}'
-            
-    # Create the connection
-    cnx = create_engine(postgres_str)
-
-    data_final_form.to_sql("accidents_ready",con=cnx)
 
