@@ -88,8 +88,8 @@ services:
       POSTGRES_USER: nader
       POSTGRES_PASSWORD: nader
       POSTGRES_DB: accidents
-    # volumes:
-    #   - postgres-db-volume:/var/lib/postgresql/data
+    volumes:
+      - ./postgres_accidents_database:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "nader"]
       interval: 5s

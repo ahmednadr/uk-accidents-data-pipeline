@@ -2,11 +2,11 @@ from datetime import datetime
 from airflow import DAG 
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
-from clean import clean
-from hospitals import hospitals
-from encode import encode
-from save_to_accidents_db import save
-from dashboard import dashboard
+from scripts.clean import clean
+from scripts.hospitals import hospitals
+from scripts.encode import encode
+from scripts.save_to_accidents_db import save
+from scripts.dashboard import dashboard
 
 
 with DAG(
@@ -20,16 +20,16 @@ with DAG(
     path1 = "/opt/airflow/dags/files/1991_Accidents_UK.csv"
     cleaning  = PythonOperator(task_id="clean",python_callable=clean,op_kwargs={"path" :path1})
 
-    path2 = '/opt/airflow/dags/files/clean.parquet'
+    path2 = '/opt/airflow/dags/files/clean.csv'
     get_hospitals  = PythonOperator(task_id="hospitals_around",python_callable=hospitals,op_kwargs={"path" :path2})
 
-    path3 = '/opt/airflow/dags/files/hospitals.parquet'
+    path3 = '/opt/airflow/dags/files/hospitals.csv'
     encoding  = PythonOperator(task_id="encode",python_callable=encode,op_kwargs={"path" :path3})
 
     path4 = '/opt/airflow/dags/files/encoded.parquet'
     saving  = PythonOperator(task_id="save_to_db",python_callable=save,op_kwargs={"path" :path4})
 
-    path5 = '/opt/airflow/dags/files/hospitals.parquet'
+    path5 = '/opt/airflow/dags/files/hospitals.csv'
     ploting  = PythonOperator(task_id="dashboard",python_callable=dashboard,op_kwargs={"path" :path5})
 
     # Set dependencies between tasks

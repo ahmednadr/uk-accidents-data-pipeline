@@ -1,2 +1,4 @@
 *.csv
 /logs/*
+/postgres_accidents_database
+*.pyc
