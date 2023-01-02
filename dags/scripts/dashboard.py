@@ -29,6 +29,8 @@ def dashboard(path):
     num_cols = list(df._get_numeric_data().columns)
     cat_cols = list(set(cols) - set(num_cols))
 
+    print("loaded")
+
     @app.callback(
         Output('x-axis', 'options'),
         Output('y-axis', 'options'),
@@ -41,20 +43,20 @@ def dashboard(path):
         elif selected_plot == "scatter":
             x = y = num_cols
         elif selected_plot ==  "line":
-            x,y = cat_cols , num_cols
+            x,y = cols , cols
         return x,y
 
     @app.callback(
         Output('x-axis', 'value'),
         Input('x-axis', 'options'))
     def set_x_value(available_options):
-        return available_options[2]
+        return available_options[0]
 
     @app.callback(
         Output('y-axis', 'value'),
         Input('y-axis', 'options'))
     def set_y_value(available_options):
-        return available_options[2]
+        return available_options[0]
 
     @app.callback(
         Output('display-selected-plot-str', 'children'),
@@ -62,7 +64,7 @@ def dashboard(path):
         Input('x-axis', 'value'),
         Input('y-axis', 'value'))
     def set_display_children(selected_plot, selected_x, selected_y):
-        return u'{} plot of x-axis {} and y-axis {}'.format(
+        return u'{} plot of x-axis {} and   y-axis {}'.format(
             selected_plot, selected_x,selected_y
         )
 
@@ -119,4 +121,7 @@ def dashboard(path):
     )
 
     # if __name__ == '__main__':
-    app.run_server(host= "0.0.0.0",port = 10991, debug=True)
+    app.run_server(host= "0.0.0.0", debug=False)
+
+# if __name__ == '__main__':
+#     dashboard("/Users/test/Desktop/Ahmed Nader/projects/data engineering project/dags/files/hospitals.csv")

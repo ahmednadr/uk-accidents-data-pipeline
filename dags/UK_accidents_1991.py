@@ -11,8 +11,8 @@ from scripts.dashboard import dashboard
 
 with DAG(
     dag_id= "accidents_1991",
-    start_date=datetime(2022, 12, 24),
-    schedule="30 18 * * *",
+    start_date=datetime(2023, 1, 1),
+    schedule="@once",
 ) as dag :
 
     hello = BashOperator(task_id="hello", bash_command="echo starting")
